@@ -21,4 +21,18 @@ public class AddressMapper {
                 address.getAddressComplement()
                 );
     }
+
+    public static Address toEntity(AddressDTO dto) {
+        if(dto == null) {
+            return null;
+        }
+        return  new Address(
+                dto.city(),
+                dto.street(),
+                dto.state(),
+                dto.zip(),
+                dto.addressNumber(),
+                dto.addressComplement()
+        );
+    }
 }

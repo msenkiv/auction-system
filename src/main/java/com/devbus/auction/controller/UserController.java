@@ -2,9 +2,9 @@ package com.devbus.auction.controller;
 
 import com.devbus.auction.dto.UserDTO;
 import com.devbus.auction.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +18,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    public void CreateUser(){
+    @PostMapping()
+    public ResponseEntity<UserDTO> CreateUser(@RequestBody UserDTO userDTO){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(this.userService
+                        .createUser(userDTO));
     }
 
     @GetMapping("/list")

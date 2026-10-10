@@ -1,3 +1,37 @@
+@LOCAL_BASE_URL=http://localhost:8080
+@USER_ID=b9c51356-9727-4d9c-a210-172e8dd5c447
+
 GET http://localhost:8080/health
 ###
 GET http://localhost:8080/users/list
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "bb",
+  "email": "bb@auction.com",
+  "address": {
+    "city": "São Paulo",
+    "street": "Rua das Flores",
+    "state": "SP",
+    "zip": "01001-000",
+    "addressNumber": "123",
+    "addressComplement": "Apartamento 10"
+  }
+}
+
+###
+POST http://localhost:8080/auction-item
+Content-Type: application/json
+x-api-key: {{USER_ID}}
+
+{
+  "name": "Vinil Biriri",
+  "description": "Piririrr e porororo"
+}
+
+###
+GET {{LOCAL_BASE_URL}}/auction-item/list
+Content-Type: application/json
+x-api-key: {{USER_ID}}
